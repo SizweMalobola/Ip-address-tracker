@@ -41,7 +41,7 @@
       align-items: center;
     }
     header {
-      background-image: linear-gradient(80deg, blue 50%, white);
+      background-image: linear-gradient(80deg, blue 50%, rgb(248, 248, 248));
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -62,7 +62,12 @@
       border: 1px solid black;
       border-top-left-radius: 12px;
       border-bottom-left-radius: 12px;
+      font-weight: 600;
     }
+    #search-bar > input:focus {
+      outline: none;
+    }
+
     #search-bar button {
       position: absolute;
       top: 0;
@@ -85,7 +90,7 @@
       border-radius: 12px;
       padding: 1em;
       text-align: center;
-      box-shadow: black 1px 2px 4px ;
+      box-shadow: gray 1px 2px 4px;
     }
     #api-details > div {
       /* background-color: darkcyan; */
@@ -95,18 +100,18 @@
       margin-bottom: 0.6em;
     }
     #api-details > div span {
-        display: inline-block;
-        margin-bottom: .6em;
-        font-size: .7rem;
-        text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 0.4em;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: gray;
     }
     #api-details > div h3 {
-        margin:0;
-        text-transform: capitalize;
-        font-size: 1.1rem;
-
+      margin: 0;
+      text-transform: capitalize;
+      font-size: 1.1rem;
+    }
   }
-}
   @media (min-width: 360px) {
     header {
       max-height: 250px;
@@ -120,12 +125,14 @@
     #api-details {
       padding: 1.5em;
     }
+    #api-details > div {
+      margin-bottom: 0.8em;
+    }
     #api-details > div span {
-        font-size: .8rem;
+      font-size: 0.8rem;
     }
     #api-details > div h3 {
-        font-size: 1.3rem;
-
+      font-size: 1.2rem;
+    }
   }
-
 </style>
