@@ -1,4 +1,13 @@
 <script>
+  //   import { onMount } from "svelte";
+  let data;
+  //   onMount(async () => {
+  //     const res = await fetch(
+  //       "https://geo.ipify.org/api/v1?apiKey=at_yD3vEaoAvXcwTfz6Dtskb3YdADme8&ipAddress="
+  //     );
+  //     data = await res.json();
+  //     console.log(data);
+  //   });
 </script>
 
 <main id="main-container">
