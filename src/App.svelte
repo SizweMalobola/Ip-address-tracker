@@ -1,4 +1,6 @@
 <script>
+  import LeafletMap from "./components/LeafletMap.svelte";
+  import LeafletMarker from "./components/LeafletMarker.svelte";
   //   import { onMount } from "svelte";
   let data;
   //   onMount(async () => {
@@ -39,7 +41,9 @@
       </div>
     </div>
   </header>
-  <div id="map" />
+  <LeafletMap>
+    <!-- <LeafletMarker lat="40" lng="-3" /> -->
+  </LeafletMap>
 </main>
 
 <style>
@@ -50,6 +54,7 @@
       align-items: center;
     }
     header {
+      z-index: 1;
       background-image: linear-gradient(80deg, blue 50%, rgb(248, 248, 248));
       width: 100%;
       display: flex;
