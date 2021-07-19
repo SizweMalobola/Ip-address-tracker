@@ -16,7 +16,7 @@
     <h1>IP Adress Traker</h1>
     <div id="content">
       <div id="search-bar">
-        <input type="text" />
+        <input type="text" placeholder="Search for any IP address" />
         <button>&RightAngleBracket;</button>
       </div>
       <!-- display details -->
@@ -26,6 +26,8 @@
           <h3>
             {#if data}
               {data.ip}
+            {:else}
+              192.212.174.101
             {/if}
           </h3>
         </div>
@@ -34,6 +36,8 @@
           <h3>
             {#if data}
               {data.location.country},{data.location.city}
+            {:else}
+              Brooklyn,NY 10001
             {/if}
           </h3>
         </div>
@@ -42,6 +46,8 @@
           <h3>
             {#if data}
               {data.location.timezone}
+            {:else}
+              UTC-05:00
             {/if}
           </h3>
         </div>
@@ -50,6 +56,8 @@
           <h3>
             {#if data}
               {data.as.name}
+            {:else}
+              SpaceX Starlink
             {/if}
           </h3>
         </div>
@@ -70,7 +78,7 @@
     }
     header {
       z-index: 1;
-      background-image: linear-gradient(80deg, blue 50%, rgb(248, 248, 248));
+      background-image: linear-gradient(80deg, blue 50%, rgb(15, 15, 172));
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -163,5 +171,34 @@
     #api-details > div h3 {
       font-size: 1.2rem;
     }
+  }
+  @media (min-width: 768px) {
+    header {
+      max-height: 200px;
+    }
+    #content {
+      width: 100%;
+      max-width: 768px;
+    }
+    #search-bar {
+      width: 55%;
+      margin: 0 auto;
+      margin-bottom: 1.5em;
+    }
+    #search-bar > input {
+      font-size: 1rem;
+    }
+    #api-details {
+      text-align: left;
+      display: flex;
+      justify-content: space-around;
+      padding: 1.2em 0;
+    }
+    #api-details > div:not(:first-child) {
+      padding-left: 1em;
+      border-left: 1px solid gray;
+    }
+  }
+  @media (min-width: 1024px) {
   }
 </style>
