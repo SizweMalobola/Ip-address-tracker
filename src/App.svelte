@@ -71,10 +71,18 @@
 
 <style>
   @media (min-width: 320px) {
+    :global(body) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
     #main-container {
       display: flex;
       flex-direction: column;
       align-items: center;
+      width: 100%;
+      height: 100%;
     }
     header {
       z-index: 1;
@@ -90,7 +98,9 @@
     }
     #search-bar {
       width: 100%;
+      max-width: 400px;
       position: relative;
+      margin: 0 auto;
       margin-bottom: 1rem;
     }
     #search-bar > input {
@@ -130,7 +140,6 @@
       box-shadow: gray 1px 2px 4px;
     }
     #api-details > div {
-      /* background-color: darkcyan; */
       margin-bottom: 0;
       padding: 0;
       display: block;
@@ -173,12 +182,19 @@
     }
   }
   @media (min-width: 768px) {
+    #main-container {
+      max-width: 1024px;
+      height: 90%;
+    }
     header {
       max-height: 200px;
     }
+    header > h1 {
+      font-size: 2.4rem;
+    }
     #content {
       width: 100%;
-      max-width: 768px;
+      max-width: 800px;
     }
     #search-bar {
       width: 55%;
@@ -200,5 +216,8 @@
     }
   }
   @media (min-width: 1024px) {
+    #main-container {
+      height: 80%;
+    }
   }
 </style>
