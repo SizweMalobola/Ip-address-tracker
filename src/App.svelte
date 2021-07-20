@@ -3,11 +3,25 @@
   import LeafletMap from "./components/LeafletMap.svelte";
   import LeafletMarker from "./components/LeafletMarker.svelte";
   let data;
-  onMount(async () => {
+  let formData = {
+    ip: "",
+  };
+  async function search(address = "") {
     const res = await fetch(
-      "https://geo.ipify.org/api/v1?apiKey=at_yD3vEaoAvXcwTfz6Dtskb3YdADme8&ipAddress="
+      `https://geo.ipify.org/api/v1?apiKey=at_yD3vEaoAvXcwTfz6Dtskb3YdADme8&ipAddress=${address}`
     );
+
     data = await res.json();
+    //
+    formData.ip = data.ip;
+    console.log(data);
+  }
+  const submitHandler = (event) => {
+    event.preventDefault();
+    search(formData.ip);
+  };
+  onMount(() => {
+    search();
   });
 </script>
 
@@ -15,52 +29,46 @@
   <header>
     <h1>IP Adress Traker</h1>
     <div id="content">
-      <div id="search-bar">
-        <input type="text" placeholder="Search for any IP address" />
+      <form on:submit={submitHandler} id="search-bar">
+        <input
+          class:undefined={formData.ip == "Undefined"}
+          type="text"
+          bind:value={formData.ip}
+          placeholder="Search for any IP address"
+          required
+        />
         <button>&RightAngleBracket;</button>
-      </div>
+      </form>
       <!-- display details -->
       <div id="api-details">
-        <div>
-          <span>ip address</span>
-          <h3>
-            {#if data}
+        {#if data}
+          <div>
+            <span>ip address</span>
+            <h3>
               {data.ip}
-            {:else}
-              192.212.174.101
-            {/if}
-          </h3>
-        </div>
-        <div>
-          <span>Location</span>
-          <h3>
-            {#if data}
+            </h3>
+          </div>
+          <div>
+            <span>Location</span>
+            <h3>
               {data.location.country},{data.location.city}
-            {:else}
-              Brooklyn,NY 10001
-            {/if}
-          </h3>
-        </div>
-        <div>
-          <span>Timezone</span>
-          <h3>
-            {#if data}
+            </h3>
+          </div>
+          <div>
+            <span>Timezone</span>
+            <h3>
               {data.location.timezone}
-            {:else}
-              UTC-05:00
-            {/if}
-          </h3>
-        </div>
-        <div>
-          <span>ISP</span>
-          <h3>
-            {#if data}
+            </h3>
+          </div>
+          <div>
+            <span>ISP</span>
+            <h3>
               {data.as.name}
-            {:else}
-              SpaceX Starlink
-            {/if}
-          </h3>
-        </div>
+            </h3>
+          </div>
+        {:else}
+          <h2>Loading...</h2>
+        {/if}
       </div>
     </div>
   </header>
