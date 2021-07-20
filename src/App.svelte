@@ -1,8 +1,10 @@
 <script>
   import { onMount } from "svelte";
   import LeafletMap from "./components/LeafletMap.svelte";
-  import LeafletMarker from "./components/LeafletMarker.svelte";
+
   let data;
+  let latitude = 0;
+  let longitude = 0;
   let formData = {
     ip: "",
   };
@@ -12,7 +14,6 @@
     );
 
     data = await res.json();
-    //
     formData.ip = data.ip;
     console.log(data);
   }
@@ -20,9 +21,15 @@
     event.preventDefault();
     search(formData.ip);
   };
+  // Mount
   onMount(() => {
     search();
   });
+  //  this part acts as my re-render if data is reassigned
+  $: if (data) {
+    latitude = data.location.lat;
+    longitude = data.location.lng;
+  }
 </script>
 
 <main id="main-container">
@@ -72,9 +79,7 @@
       </div>
     </div>
   </header>
-  <LeafletMap>
-    <!-- <LeafletMarker lat="40" lng="-3" /> -->
-  </LeafletMap>
+  <LeafletMap lat={latitude} lng={longitude} zoom={1} />
 </main>
 
 <style>

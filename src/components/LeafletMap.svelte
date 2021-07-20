@@ -1,15 +1,24 @@
 <script>
   import L from "leaflet";
-  import { setContext, onMount } from "svelte";
+  import { onMount } from "svelte";
+  export let lat;
+  export let lng;
+  export let zoom;
+
   let map;
+  let marker;
   onMount(() => {
-    map = L.map("map").setView([-25.74486, 28.18783], 13);
+    map = L.map("map").setView([lat, lng], zoom);
     L.tileLayer("https://a.tile.openstreetmap.org/{z}/{x}/{y}.png ", {
       attribution:
         'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
     }).addTo(map);
+    marker = L.marker([lat, lng]).addTo(map);
   });
-  setContext("leafletMapInstance", map);
+  $: if (lat) {
+    map.setView([lat, lng], 12);
+    marker.setLatLng([lat, lng]);
+  }
 </script>
 
 <svelte:head>
@@ -20,9 +29,8 @@
     crossorigin=""
   />
 </svelte:head>
-<div id="map">
-  <slot />
-</div>
+
+<div id="map" />
 
 <style>
   #map {
