@@ -32,9 +32,10 @@
   }
 </script>
 
+<img src="./assets/1984.jpg" alt="1984 wallpaper" />
 <main id="main-container">
   <header>
-    <h1>IP Adress Traker</h1>
+    <h1>BIG BROTHER</h1>
     <div id="content">
       <form on:submit={submitHandler} id="search-bar">
         <input
@@ -90,6 +91,12 @@
       align-items: center;
       min-height: 100vh;
     }
+    img {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
     #main-container {
       display: flex;
       flex-direction: column;
@@ -99,7 +106,11 @@
     }
     header {
       z-index: 1;
-      background-image: linear-gradient(80deg, blue 50%, rgb(15, 15, 172));
+      background-image: linear-gradient(
+        80deg,
+        rgb(255, 0, 43) 50%,
+        rgb(172, 15, 23)
+      );
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -143,6 +154,11 @@
       justify-content: center;
       align-items: center;
       font-size: 1rem;
+      transition: 0.5s;
+    }
+    #search-bar button:hover {
+      background-color: gray;
+      cursor: pointer;
     }
     #api-details {
       background-color: whitesmoke;
