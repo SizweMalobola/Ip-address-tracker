@@ -5,6 +5,10 @@
   let data;
   let latitude = 0;
   let longitude = 0;
+  let ipAddress;
+  let location;
+  let timezone;
+  let isp;
   let formData = {
     ip: "",
   };
@@ -27,8 +31,18 @@
   });
   //  this part acts as my re-render if data is reassigned
   $: if (data) {
-    latitude = data.location.lat;
-    longitude = data.location.lng;
+    if (data.code) {
+      //
+      alert(data.messages);
+    } else {
+      latitude = data.location.lat;
+      longitude = data.location.lng;
+      //
+      ipAddress = data.ip;
+      location = `${data.location.country},${data.location.city}`;
+      timezone = data.location.timezone;
+      isp = data.as ? data.as.name : "NOT AVAILABLE";
+    }
   }
 </script>
 
@@ -53,25 +67,25 @@
           <div>
             <span>ip address</span>
             <h3>
-              {data.ip}
+              {ipAddress}
             </h3>
           </div>
           <div>
             <span>Location</span>
             <h3>
-              {data.location.country},{data.location.city}
+              {location}
             </h3>
           </div>
           <div>
             <span>Timezone</span>
             <h3>
-              {data.location.timezone}
+              {timezone}
             </h3>
           </div>
           <div>
             <span>ISP</span>
             <h3>
-              {data.as.name}
+              {isp}
             </h3>
           </div>
         {:else}
